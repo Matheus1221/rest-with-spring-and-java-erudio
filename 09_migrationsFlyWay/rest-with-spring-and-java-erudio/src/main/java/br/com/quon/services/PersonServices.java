@@ -52,7 +52,6 @@ public class PersonServices {
 		return DozerMapper.parseObject(entity, PersonVO.class);
 	}
 	
-	
 	public PersonVO create(PersonVO person) {
 		logger.info("crating one person!");
 		
@@ -63,16 +62,10 @@ public class PersonServices {
 		return vo;
 	}
 	
-
-	
-	
 	public PersonVO update(PersonVO person) {
 		logger.info("updating one person!");
-		
 		var entity = repository.findById(person.getId())
 		.orElseThrow(() -> new ResourceNotFoundException("Not Records found for this ID!"));
-		
-		;
 		entity.setName(person.getName());
 		entity.setLastName(person.getLastName());
 		entity.setAddress(person.getAddress());
