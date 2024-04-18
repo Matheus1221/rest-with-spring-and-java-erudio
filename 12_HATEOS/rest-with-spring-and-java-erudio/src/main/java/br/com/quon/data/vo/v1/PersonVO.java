@@ -3,23 +3,26 @@ package br.com.quon.data.vo.v1;
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.springframework.hateoas.RepresentationModel;
+
+import com.github.dozermapper.core.Mapping;
 
 
 
-@JsonPropertyOrder({"id","first_name","last_name","address","gender"})
-public class PersonVO implements Serializable{
+
+
+
+public class PersonVO extends RepresentationModel<PersonVO> implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	 
 
-	private long id;
+	@Mapping("id")
+	private long key;
 	
-	@JsonProperty("first_name")
+	
 	private String name;
 	
-	@JsonProperty("last_name")
 	private String lastName;
 	
 	
@@ -31,7 +34,10 @@ public class PersonVO implements Serializable{
 	
 	public PersonVO() {}
 	
-	
+	public long getKey() {
+		return key;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -56,17 +62,17 @@ public class PersonVO implements Serializable{
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public long getId() {
-		return id;
+
+	public void setKey(long key) {
+		this.key = key;
 	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
+	
 
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, gender, id, lastName, name);
+		return Objects.hash(address, gender, key, lastName, name);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -77,11 +83,11 @@ public class PersonVO implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		PersonVO other = (PersonVO) obj;
-		return Objects.equals(address, other.address) && Objects.equals(gender, other.gender) && id == other.id
+		return Objects.equals(address, other.address) && Objects.equals(gender, other.gender) && key == other.key
 				&& Objects.equals(lastName, other.lastName) && Objects.equals(name, other.name);
 	}
-	
-	
+
+
 	
 	
 	
