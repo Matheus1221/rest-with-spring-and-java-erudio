@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.quon.controllers.PersonController;
 import br.com.quon.data.vo.v1.PersonVO;
+import br.com.quon.exception.RequireObjectIsNullException;
 import br.com.quon.exception.ResourceNotFoundException;
 import br.com.quon.mapper.DozerMapper;
 
@@ -72,8 +73,10 @@ public class PersonServices {
 	
 	
 	public PersonVO create(PersonVO person) {
-		logger.info("crating one person!");
 		
+		if(person == null) throw new RequireObjectIsNullException();
+		
+		logger.info("crating one person!");
 		var entity = DozerMapper.parseObject(person, Person.class);
 		var vo =  DozerMapper.parseObject(repository.save(entity), PersonVO.class);
 		try {

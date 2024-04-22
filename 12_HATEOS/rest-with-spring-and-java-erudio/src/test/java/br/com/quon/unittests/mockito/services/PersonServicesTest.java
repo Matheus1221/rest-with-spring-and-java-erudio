@@ -16,6 +16,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.com.quon.data.vo.v1.PersonVO;
+import br.com.quon.exception.RequireObjectIsNullException;
 import br.com.quon.model.Person;
 import br.com.quon.repositories.PersonRepository;
 import br.com.quon.services.PersonServices;
@@ -85,6 +86,19 @@ class PersonServicesTest {
 		assertEquals("Last Name Test1",result.getLastName());
 		assertEquals("Female",result.getGender());
 	}
+	
+	void testCreateWithNullPerson() {
+		
+		Exception exception = assertThrows(RequireObjectIsNullException.class, ()->{
+			service.create(null);
+		}); 
+		
+		String expectedMessage = "It is not allowed to persist a null object";
+		String actualMessage = exception.getMessage();
+		
+		 assertTrue(actualMessage.contains(expectedMessage));
+
+	}
 
 	@Test
 	void testUpdate() {
@@ -112,6 +126,20 @@ class PersonServicesTest {
 		assertEquals("Last Name Test1",result.getLastName());
 		assertEquals("Female",result.getGender());
 	}
+	
+	void testUpdateWithNullPerson() {
+		
+		Exception exception = assertThrows(RequireObjectIsNullException.class, ()->{
+			service.update(null);
+		}); 
+		
+		String expectedMessage = "It is not allowed to persist a null object";
+		String actualMessage = exception.getMessage();
+		
+		 assertTrue(actualMessage.contains(expectedMessage));
+
+	}
+
 
 	@Test
 	void testDelete() {
