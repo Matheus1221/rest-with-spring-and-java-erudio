@@ -17,7 +17,7 @@ public class OpenApiConfig {
 		return new OpenAPI()
 				.info(new Info()
 						.title("Api Spring JAVA 17")
-						.version("v1")
+						.version("1.0.0")
 						.description("about api")
 						.termsOfService("https://matheus1221.github.io/Matheus-site/")
 						.license(

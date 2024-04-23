@@ -22,7 +22,7 @@ import br.com.quon.services.PersonServices;
 
 @RestController
 @RequestMapping("/api/person/v1")
-@Tag(name= "People", description = "Endpoints for managing People")
+@Tag(name= "People", description = "Endpoints for maping People")
 public class PersonController {
 	
 	@Autowired
@@ -38,12 +38,12 @@ public class PersonController {
 			   tags = {"People"}, 
 			   responses = {
 					   @ApiResponse(description = "Success", responseCode ="200",
-							   content = {
-									   @Content(
-											   mediaType = "application/json",
-											   array = @ArraySchema (schema = @Schema (implementation = PersonVO.class))
-											   )
-									   }),
+					   content = {
+								 @Content(
+									mediaType = "application/json",
+									array = @ArraySchema (schema = @Schema (implementation = PersonVO.class))
+								)
+					   }),
 					   @ApiResponse(description = "Bad Request", responseCode ="400", content = @Content),
 					   @ApiResponse(description = "Unauthorized", responseCode ="401", content = @Content),
 					   @ApiResponse(description = "Not Found", responseCode ="404", content = @Content),
