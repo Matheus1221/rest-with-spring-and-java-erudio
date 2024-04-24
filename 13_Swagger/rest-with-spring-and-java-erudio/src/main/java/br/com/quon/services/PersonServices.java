@@ -80,7 +80,7 @@ public class PersonServices {
 		var entity = DozerMapper.parseObject(person, Person.class);
 		var vo =  DozerMapper.parseObject(repository.save(entity), PersonVO.class);
 		try {
-			vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey()).withSelfRel());
+			vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -91,7 +91,7 @@ public class PersonServices {
 		logger.info("updating one person!");
 		var entity = repository.findById(person.getKey())
 		.orElseThrow(() -> new ResourceNotFoundException("Not Records found for this ID!"));
-		entity.setFirstName(person.getFirstName());
+		entity.setName(person.getName());
 		entity.setLastName(person.getLastName());
 		entity.setAddress(person.getAddress());
 		entity.setGender(person.getGender());
@@ -115,3 +115,5 @@ public class PersonServices {
 	}
 
 }
+
+
