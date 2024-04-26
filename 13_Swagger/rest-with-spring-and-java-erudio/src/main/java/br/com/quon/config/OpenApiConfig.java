@@ -23,7 +23,7 @@ public class OpenApiConfig {
 						.license(
 							new License()
 								.name("Aoache 2.0")
-								.url("https://matheus1221.github.io/Matheus-site/")));
+								.url("https://github.com/Matheus1221")));
 								
 			
 	}
